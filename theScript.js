@@ -132,7 +132,7 @@ function getSchoolsData(){
 		 type: 'GET',
 		 dataType: 'json',
 		 error: function(data){
-		 	alert("ERRRRRRORORRRRRR");
+		 	alert("ERROR: Have you selected a search criteria?");
 		 },
 		 success: function(data){
 		 	console.log(data);
