@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> simple </title>
+    <link rel = "stylesheet" type="text/css" href="design.css">  
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="theScript.js"></script>
+
+  </head>
+  <body>
+    <h3>Search your college criteria</h3>
+
+    <input id="StateInput" type="text">
+    <button id="submit">Search colleges</button>
+
+    <ul id="listtt">
+      <li>
+          SAT
+          <ul>
+            <li id="SatHi">Highest average</li>
+            <li id="SatLo">Lowest average</li>
+          </ul>
+      </li>
+
+      <li>
+          ACT
+          <ul>
+            <li id="ActHi">Highest average</li>
+            <li id="ActLo">Lowest average</li>
+          </ul>
+      </li>
+
+      <li>
+          Admissions
+          <ul>
+            <li id="AdmHi">Highest rate</li>
+            <li id="AdmLo">Lowest rate</li>
+          </ul>
+      </li>
+    </ul>
+
+    <div id="search-criteria"></div>
+
+    <div id="map"></div>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBby5zA8-py6dlLAnEE-JW_gj6cJBnfB4&callback=initialize">
+    </script>
+  </body>
+</html>
