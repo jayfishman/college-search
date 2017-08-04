@@ -39,6 +39,25 @@
       </li>
     </ul>
 
+    <form>
+      <select class="num-dropdown" placeholder="3"></select>
+    </form>
+
+    <script>
+    $(function(){
+      //creates a drop down with numbers 1-20 (default = 10)
+      for (var i = 1; i <= 20; i++){
+          if(i == 10){
+            $(".num-dropdown").append($('<option selected> </option>').val(i).html(i));
+            continue;    
+          }
+          $(".num-dropdown").append($('<option></option>').val(i).html(i));
+      }
+
+
+    });
+    </script>
+
     <div id="search-criteria"></div>
 
     <div id="map"></div>

@@ -55,6 +55,7 @@ var map;
 var markers = [];
 var criteria;
 var order;
+var numOfResults = 10;
 
 function initialize(){
 	var mapCenter = {lat: 41.219575, lng:-99.994239};
@@ -79,6 +80,11 @@ function initialize(){
     $('#listtt').hover(function(){
     	checkCriteria();
 
+    });
+
+    $('.num-dropdown').change(function(){
+        numOfResults = $('.num-dropdown').val();
+        console.log("numOfResults: " + numOfResults)
     });
 }
 
@@ -122,14 +128,6 @@ function checkCriteria(){
     	searching = 'highest admissions rate';
         addHTML(searching);
     });
-
-    // if(searching != ''){
-    //     addHTML(searching);
-    //     getSchoolsData();
-    //     console.log('its true')
-    // } 
-    // if (didClick == 0) console.log('hahahahahah yyy')
-	
 }
 
 function addHTML(attribute){
@@ -151,10 +149,11 @@ function getSchoolsData(){
 	var mainURL = 'https://api.data.gov/ed/collegescorecard/v1/schools.json?';
 	var myApiID = '&api_key=jIx645ejILTvl7MIIWbkQT7TzlBG4nh4QLkmKzhY';
 	var getFields = '&_fields=' + 'school.name,' + 'school.school_url,' + 'location.lat,location.lon,'
+    var resultsAmount = '&_per_page=' + numOfResults;
 
 	$.ajax({
 		 //url:'https://api.data.gov/ed/collegescorecard/v1/schools.json?&' + myApiID + location, 
-		 url: mainURL + myApiID + state + getFields + criteria + '&_sort=' + criteria + order,
+		 url: mainURL + myApiID +  resultsAmount + state + getFields + criteria + '&_sort=' + criteria + order,
 		 type: 'GET',
 		 dataType: 'json',
 		 error: function(data){
