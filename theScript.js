@@ -173,24 +173,35 @@ function getSchoolsData(){
 	})
 }
 
+
+
 function plotOnMap(collegeData){
+    var collegeURL = collegeData['school.school_url']
+
+    if(collegeURL != null && !collegeURL.includes('http')){
+        collegeURL = 'https://' + collegeURL;
+    }
+
+    //create content for each college's marker
+    var markerContent = "<h2>" + collegeData['school.name'] + "</h2> <br>" +
+    "<p> number offf:" + collegeData[criteria] + "</p>" +
+    "<p> <a href=" + collegeURL + " target='_blank'>Visit their website</a> </p>";
+
 	//Create a marker for the college on the map
 	var marker = new google.maps.Marker({
       position: {lat: collegeData['location.lat'], lng: collegeData['location.lon']},
-      map: map,
+      map: map
     });
 
     //add info about the college when user clicks on it
     var infoWindow = new google.maps.InfoWindow({
-      content: collegeData['school.name'] + ':  ' + collegeData[criteria] + '\nVisit their website'
+      content: markerContent
     });
     marker.addListener('click', function(){
     	infoWindow.open(map, marker);
     });
     markers.push(marker);
 }
-
-
 
 function deleteMarkers(){
    for (var i = 0; i < markers.length; i++) {
