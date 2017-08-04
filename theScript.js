@@ -68,51 +68,77 @@ function initialize(){
     	getSchoolsData();
     });
 
+    $('#StateInput').keypress(function(button){
+        if (button.which == 13){
+            //Use jQuery's trigger() function to execute the click event
+            $("#submit").trigger('click');
+            //getSchoolsData();
+        }
+    });
+
     $('#listtt').hover(function(){
-    	console.log(checkCriteria())
+    	checkCriteria();
 
     });
 }
 
 function checkCriteria(){
-	var searchin;
-	$("#search-criteria").html("");
+	var searching;
+    var didClick = 0;
 	$('#ActLo').click(function(){
     	criteria = '2014.admissions.act_scores.midpoint.cumulative';
     	order = ':asc';
     	searching = 'lowest average ACT scores';
+        console.log('act lo')
+        addHTML(searching);
     });
 	$('#ActHi').click(function(){
     	criteria = '2014.admissions.act_scores.midpoint.cumulative';
     	order = ':desc';
     	searching = 'highest average ACT scores';
+        addHTML(searching);
     });
 	$('#SatLo').click(function(){
     	criteria = '2014.admissions.sat_scores.average.overall'
     	order = ':asc';
     	searching = 'lowest average SAT scores';
+        addHTML(searching);
     });
 	$('#SatHi').click(function(){
     	criteria = '2014.admissions.sat_scores.average.overall';
     	order = ':desc';
     	searching = 'highest average SAT scores';
+        addHTML(searching);
     });
 	$('#AdmLo').click(function(){
     	criteria = '2014.admissions.admission_rate.overall';
     	order = ':asc';
     	searching = 'lowest admissions rate';
+        addHTML(searching);
     });
 	$('#AdmHi').click(function(){
     	criteria = '2014.admissions.admission_rate.overall';
     	order = ':desc';
     	searching = 'highest admissions rate';
+        addHTML(searching);
     });
 
-    var htmlString =	"<p class='searchCriteria'>" +
-							"Criteria: colleges with the " + searching
-						"</p>";
-	//Use jQuery's append() function to add the searchResults to the DOM
-	$("#search-criteria").append(htmlString);
+    // if(searching != ''){
+    //     addHTML(searching);
+    //     getSchoolsData();
+    //     console.log('its true')
+    // } 
+    // if (didClick == 0) console.log('hahahahahah yyy')
+	
+}
+
+function addHTML(attribute){
+    $("#search-criteria").html("");
+    var htmlString = "<p class='searchCriteria'>" +
+                        "Criteria: colleges with the " + attribute +
+                    "</p>";
+    $("#search-criteria").append(htmlString);
+    getSchoolsData();
 }
 
 function getSchoolsData(){
